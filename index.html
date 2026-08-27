@@ -3,92 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Catálogo de productos Apple: MacBook, iPhone, iPad, Apple Watch y más.">
-    <title>Apple Store | Catálogo de Productos</title>
+    <title>TechStore - E-Commerce</title>
 </head>
 <body>
 
+    <!-- ENCABEZADO PRINCIPAL -->
     <header>
-        <h1>Apple Store</h1>
+        <h1>TechStore</h1>
+        
+        <!-- Barra de búsqueda básica -->
+        <form role="search">
+            <label for="buscar-producto">Buscar productos:</label>
+            <input type="search" id="buscar-producto" name="q" placeholder="Ej: Notebook, Auriculares...">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- Navegación global -->
         <nav aria-label="Navegación principal">
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#ofertas">Ofertas</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#favoritos">Favoritos (0)</a></li>
+                <li><a href="#carrito">Carrito (0)</a></li>
             </ul>
         </nav>
     </header>
 
-    <main id="inicio">
+    <!-- CONTENEDOR PRINCIPAL: FILTROS Y CATÁLOGO -->
+    <div>
+        <!-- FILTROS Y CATEGORÍAS (Barra lateral semántica) -->
+        <aside aria-label="Filtros del catálogo">
+            <h2>Filtros</h2>
 
-        <aside aria-label="Filtros de categorías">
-            <h2>Categorías</h2>
-            <nav aria-label="Filtros de productos">
+            <section>
+                <h3>Categorías</h3>
                 <ul>
-                    <li><a href="#catalogo">Todos los productos</a></li>
-                    <li><a href="#macbook">MacBook</a></li>
-                    <li><a href="#iphone">iPhone</a></li>
-                    <li><a href="#ipad">iPad</a></li>
-                    <li><a href="#watch">Apple Watch</a></li>
-                    <li><a href="#airpods">AirPods</a></li>
-                    <li><a href="#accesorios">Accesorios</a></li>
+                    <li><a href="#">Laptops</a></li>
+                    <li><a href="#">Periféricos</a></li>
+                    <li><a href="#">Monitores</a></li>
+                    <li><a href="#">Audio</a></li>
                 </ul>
-            </nav>
+            </section>
+
+            <section>
+                <h3>Rango de Precio</h3>
+                <form>
+                    <label for="precio-min">Mínimo:</label>
+                    <input type="number" id="precio-min" name="precio_min" min="0" placeholder="0">
+
+                    <label for="precio-max">Máximo:</label>
+                    <input type="number" id="precio-max" name="precio_max" min="0" placeholder="500000">
+
+                    <button type="button">Aplicar Filtro</button>
+                </form>
+            </section>
         </aside>
 
-        <section id="catalogo" aria-label="Catálogo de productos">
-            <h2>Catálogo de productos</h2>
+        <!-- CATÁLOGO CENTRAL -->
+        <main id="catalogo">
+            <h2>Productos Destacados</h2>
 
-            <article id="macbook">
-                <h3>MacBook Air M3</h3>
-                <p>Notebook ultradelgado con chip M3, 13 pulgadas.</p>
-                <p>Precio: $1.199.000</p>
+            <!-- TARJETA DE PRODUCTO 1 -->
+            <article>
+                <img src="https://via.placeholder.com/200" alt="Notebook Asus Vivobook 15 pulgadas">
+                <h3>Notebook Asus Vivobook 15</h3>
+                <p>Procesador Ryzen, 8GB RAM, SSD 512GB. Ideal para desarrollo y estudio.</p>
+                <p><strong>Precio: $650.000</strong></p>
+                <div>
+                    <button type="button">❤️ Favorito</button>
+                    <button type="button">🛒 Agregar al Carrito</button>
+                </div>
             </article>
 
-            <article id="iphone">
-                <h3>iPhone 15 Pro</h3>
-                <p>Smartphone con chip A17 Pro, cámara de 48MP y titanio.</p>
-                <p>Precio: $1.599.000</p>
+            <!-- TARJETA DE PRODUCTO 2 -->
+            <article>
+                <img src="https://via.placeholder.com/200" alt="Teclado Mecánico RGB">
+                <h3>Teclado Mecánico Switch Red</h3>
+                <p>Teclado compacto para programación y gaming con retroiluminación configurable.</p>
+                <p><strong>Precio: $85.000</strong></p>
+                <div>
+                    <button type="button">❤️ Favorito</button>
+                    <button type="button">🛒 Agregar al Carrito</button>
+                </div>
             </article>
 
-            <article id="ipad">
-                <h3>iPad Air</h3>
-                <p>Tablet con chip M2, pantalla Liquid Retina de 11 pulgadas.</p>
-                <p>Precio: $999.000</p>
+            <!-- TARJETA DE PRODUCTO 3 -->
+            <article>
+                <img src="https://via.placeholder.com/200" alt="Auriculares inalámbricos con cancelación de ruido">
+                <h3>Auriculares Bluetooth Pro</h3>
+                <p>Cancelación activa de ruido, micrófono integrado y batería de 30 horas.</p>
+                <p><strong>Precio: $120.000</strong></p>
+                <div>
+                    <button type="button">❤️ Favorito</button>
+                    <button type="button">🛒 Agregar al Carrito</button>
+                </div>
             </article>
+        </main>
+    </div>
 
-            <article id="watch">
-                <h3>Apple Watch Series 9</h3>
-                <p>Reloj inteligente con GPS y detección de accidentes.</p>
-                <p>Precio: $549.000</p>
-            </article>
-
-            <article id="airpods">
-                <h3>AirPods Pro 2</h3>
-                <p>Auriculares inalámbricos con cancelación activa de ruido.</p>
-                <p>Precio: $349.000</p>
-            </article>
-
-            <article id="accesorios">
-                <h3>Magic Mouse</h3>
-                <p>Mouse inalámbrico recargable con Multi-Touch.</p>
-                <p>Precio: $129.000</p>
-            </article>
-
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <section>
+            <h3>Contacto y Soporte</h3>
+            <p>Email: soporte@techstore.com</p>
+            <p>Ubicación: Buenos Aires, Argentina</p>
         </section>
 
-    </main>
-
-    <footer id="contacto">
-        <p>&copy; 2026 Apple Store. Todos los derechos reservados.</p>
-        <nav aria-label="Redes sociales">
-            <ul>
-                <li><a href="https://instagram.com/apple" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-                <li><a href="https://x.com/apple" rel="noopener noreferrer" target="_blank">X (Twitter)</a></li>
-                <li><a href="https://youtube.com/apple" rel="noopener noreferrer" target="_blank">YouTube</a></li>
-            </ul>
-        </nav>
+        <p>&copy; 2026 TechStore - Aplicaciones Web Cliente (ISTEA). Todos los derechos reservados.</p>
     </footer>
 
 </body>
