@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore | Contacto y Soporte</title>
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">TechStore</a></h1>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Atención al Cliente y Consultas Técnicas</h2>
+        <p>Completá el formulario a continuación y te responderemos en un plazo máximo de 24 horas hábiles.</p>
+
+        <form action="#" method="post">
+            <fieldset>
+                <legend>Formulario de Mensaje</legend>
+
+                <div>
+                    <label for="contacto-nombre">Nombre completo:</label>
+                    <input type="text" id="contacto-nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+
+                <div>
+                    <label for="contacto-email">Correo de contacto:</label>
+                    <input type="email" id="contacto-email" name="email" required placeholder="nombre@correo.com">
+                </div>
+
+                <div>
+                    <label for="contacto-asunto">Motivo del mensaje:</label>
+                    <select id="contacto-asunto" name="asunto" required>
+                        <option value="">-- Seleccioná una opción --</option>
+                        <option value="soporte">Soporte Técnico postventa</option>
+                        <option value="presupuesto">Presupuestos para Empresas / Armados</option>
+                        <option value="garantia">Garantías y Devoluciones</option>
+                        <option value="otro">Otras consultas</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="contacto-mensaje">Mensaje:</label><br>
+                    <textarea id="contacto-mensaje" name="mensaje" rows="6" cols="40" required placeholder="Escribí tu consulta con el mayor detalle posible..."></textarea>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="acepto-terminos" name="terminos" required>
+                    <label for="acepto-terminos">Acepto los términos de tratamiento de datos personales</label>
+                </div>
+            </fieldset>
+
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechStore - Aplicaciones Web Cliente (ISTEA). Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

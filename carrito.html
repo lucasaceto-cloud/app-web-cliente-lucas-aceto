@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore | Tu Carrito</title>
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">TechStore</a></h1>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito (1)</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Resumen del Carrito</h2>
+
+        <!-- Tabla detallada de ítems en carrito -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Notebook Asus Vivobook 15 (8GB RAM / 512GB SSD)</td>
+                    <td>$650.000</td>
+                    <td>1</td>
+                    <td>$650.000</td>
+                    <td><button type="button">Eliminar</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="3">Total a Pagar</th>
+                    <td colspan="2"><strong>$650.000</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- Formulario de Finalización de Compra -->
+        <section>
+            <h3>Datos de Envío y Facturación</h3>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Información del Comprador</legend>
+
+                    <div>
+                        <label for="nombre-comprador">Nombre y Apellido:</label>
+                        <input type="text" id="nombre-comprador" name="nombre_completo" required placeholder="Ej: Lucas Aceto">
+                    </div>
+
+                    <div>
+                        <label for="email-facturacion">Correo Electrónico:</label>
+                        <input type="email" id="email-facturacion" name="email" required placeholder="tu-correo@ejemplo.com">
+                    </div>
+
+                    <div>
+                        <label for="direccion-envio">Dirección de Entrega:</label>
+                        <input type="text" id="direccion-envio" name="direccion" required placeholder="Calle, número, depto">
+                    </div>
+
+                    <div>
+                        <label for="codigo-postal">Código Postal:</label>
+                        <input type="text" id="codigo-postal" name="cp" pattern="[0-9]{4}" title="Debe contener 4 números" required placeholder="1414">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Método de Pago</legend>
+                    <div>
+                        <input type="radio" id="pago-transferencia" name="metodo_pago" value="transferencia" checked>
+                        <label for="pago-transferencia">Transferencia Bancaria (10% de descuento)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="pago-tarjeta" name="metodo_pago" value="tarjeta">
+                        <label for="pago-tarjeta">Tarjeta de Crédito / Débito</label>
+                    </div>
+                </fieldset>
+
+                <button type="submit">Confirmar y Finalizar Pedido</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechStore - Aplicaciones Web Cliente (ISTEA). Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore | Notebook Asus Vivobook 15</title>
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">TechStore</a></h1>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">Inicio / Catálogo</a></li>
+                <li><a href="carrito.html">Carrito (1)</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Navegación jerárquica (Breadcrumb) -->
+        <nav aria-label="Miga de pan">
+            <p>
+                <a href="index.html">Inicio</a> &gt; 
+                <a href="index.html#laptops">Laptops</a> &gt; 
+                <span>Asus Vivobook 15</span>
+            </p>
+        </nav>
+
+        <article>
+            <h2>Notebook Asus Vivobook 15 (Ryzen 7320U)</h2>
+            <img src="https://via.placeholder.com/400x300" alt="Vista frontal de Notebook Asus Vivobook 15">
+
+            <p>Equipo optimizado para entornos de desarrollo y productividad diaria con chasis ligero y teclado numérico ergonómico.</p>
+            <p><strong>Precio: $650.000</strong></p>
+
+            <!-- Opciones de configuración y compra -->
+            <form action="carrito.html" method="get">
+                <fieldset>
+                    <legend>Configuración del equipo</legend>
+
+                    <div>
+                        <label for="memoria-ram">Memoria RAM:</label>
+                        <select id="memoria-ram" name="ram" required>
+                            <option value="8gb">8 GB LPDDR5 (Base)</option>
+                            <option value="16gb">16 GB LPDDR5 (+$80.000)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="almacenamiento">Almacenamiento SSD:</label>
+                        <select id="almacenamiento" name="ssd" required>
+                            <option value="512gb">512 GB NVMe M.2</option>
+                            <option value="1tb">1 TB NVMe M.2 (+$60.000)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="5">
+                    </div>
+                </fieldset>
+
+                <button type="submit">🛒 Agregar al Carrito</button>
+                <button type="button">❤️ Guardar en Favoritos</button>
+            </form>
+
+            <!-- Ficha técnica estructurada semánticamente con tabla -->
+            <section>
+                <h3>Especificaciones Técnicas</h3>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Componente</th>
+                            <th>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Procesador</td>
+                            <td>AMD Ryzen 5 7320U (4 núcleos, 8 hilos, hasta 4.1 GHz)</td>
+                        </tr>
+                        <tr>
+                            <td>Gráficos</td>
+                            <td>AMD Radeon 610M Integrada</td>
+                        </tr>
+                        <tr>
+                            <td>Pantalla</td>
+                            <td>15.6" FHD (1920 x 1080) antirreflejo</td>
+                        </tr>
+                        <tr>
+                            <td>Sistema Operativo</td>
+                            <td>Sin SO / Compatible con Windows y Linux</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechStore - Aplicaciones Web Cliente (ISTEA). Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
