@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStore - E-Commerce</title>
+    <title>Vértice Ultralight | Equipamiento Técnico de Montaña</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- ENCABEZADO PRINCIPAL -->
     <header>
-        <h1>TechStore</h1>
+        <h1>Vértice Ultralight</h1>
         
-        <!-- Barra de búsqueda básica -->
+        <!-- Barra de búsqueda accesible -->
         <form role="search">
-            <label for="buscar-producto">Buscar productos:</label>
-            <input type="search" id="buscar-producto" name="q" placeholder="Ej: Notebook, Auriculares...">
+            <label for="buscar-producto">Buscar equipo:</label>
+            <input type="search" id="buscar-producto" name="q" placeholder="Ej: Mochila 40L, Carpa Dyneema...">
             <button type="submit">Buscar</button>
         </form>
 
@@ -23,31 +23,31 @@
         <nav aria-label="Navegación principal">
             <ul>
                 <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#ofertas">Ofertas</a></li>
-                <li><a href="#favoritos">Favoritos (0)</a></li>
-                <li><a href="#carrito">Carrito (0)</a></li>
+                <li><a href="#filosofia">Filosofía</a></li>
+                <li><a href="#favorito.html">Favoritos (0)</a></li>
+                <li><a href="carrito.html">Carrito (0)</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- CONTENEDOR PRINCIPAL: FILTROS Y CATÁLOGO -->
-<div class="layout-principal">
+    <div class="layout-principal">
         <!-- FILTROS Y CATEGORÍAS (Barra lateral semántica) -->
         <aside aria-label="Filtros del catálogo">
-            <h2>Filtros</h2>
+            <h2>Filtros Técnicos</h2>
 
             <section>
                 <h3>Categorías</h3>
                 <ul>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Periféricos</a></li>
-                    <li><a href="#">Monitores</a></li>
-                    <li><a href="#">Audio</a></li>
+                    <li><a href="#">Mochilas Frameless</a></li>
+                    <li><a href="#">Refugios y Carpas</a></li>
+                    <li><a href="#">Aislamiento y Quilts</a></li>
+                    <li><a href="#">Cocina & Filtrado</a></li>
                 </ul>
             </section>
 
             <section>
-                <h3>Rango de Precio</h3>
+                <h3>Rango de Precio ($)</h3>
                 <form>
                     <label for="precio-min">Mínimo:</label>
                     <input type="number" id="precio-min" name="precio_min" min="0" placeholder="0">
@@ -62,40 +62,41 @@
 
         <!-- CATÁLOGO CENTRAL -->
         <main id="catalogo">
-            <h2>Productos Destacados</h2>
+            <h2>Equipamiento Destacado</h2>
 
-            <!-- TARJETA DE PRODUCTO 1 -->
+            <!-- TARJETA DE PRODUCTO 1 (Mochila Ultra 40L) -->
             <article>
-                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&auto=format&fit=crop&q=60" alt="Notebook Asus Vivobook 15 pulgadas">                <h3>Notebook Asus Vivobook 15</h3>
-                <p>Procesador Ryzen, 8GB RAM, SSD 512GB. Ideal para desarrollo y estudio.</p>
-                <p><strong>Precio: $650.000</strong></p>
+                <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=500&auto=format&fit=crop&q=60" alt="Mochila técnica ultralight en sendero de alta montaña">
+                <h3>Mochila Frameless Ultra 40L</h3>
+                <p>Construida en Ultra 200TX impermeable. Peso neto de 480 gramos para fastpacking y travesías.</p>
+                <p><strong>Precio: $280.000</strong></p>
                 <div>
                     <button type="button">❤️ Favorito</button>
-                    <button type="button">🛒 Agregar al Carrito</button>
+                    <a href="producto.html"><button type="button">Ver Detalle</button></a>
                 </div>
             </article>
 
-            <!-- TARJETA DE PRODUCTO 2 -->
+            <!-- TARJETA DE PRODUCTO 2 (Carpa Monopared) -->
             <article>
-                <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60" alt="Teclado Mecánico Switch Red">
-                <h3>Teclado Mecánico Switch Red</h3>
-                <p>Teclado compacto para programación y gaming con retroiluminación configurable.</p>
-                <p><strong>Precio: $85.000</strong></p>
+                <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=500&auto=format&fit=crop&q=60" alt="Carpa ultraligera montada con bastones de trekking">
+                <h3>Carpa Monopared Dyneema 2P</h3>
+                <p>Armado estructural con bastones de trekking. Columna de agua de 15.000 mm y 620 g de peso total.</p>
+                <p><strong>Precio: $420.000</strong></p>
                 <div>
                     <button type="button">❤️ Favorito</button>
-                    <button type="button">🛒 Agregar al Carrito</button>
+                    <button type="button">🛒 Agregar</button>
                 </div>
             </article>
 
-            <!-- TARJETA DE PRODUCTO 3 -->
+            <!-- TARJETA DE PRODUCTO 3 (Quilt Modular) -->
             <article>
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60" alt="Auriculares Bluetooth Pro">
-                <h3>Auriculares Bluetooth Pro</h3>
-                <p>Cancelación activa de ruido, micrófono integrado y batería de 30 horas.</p>
-                <p><strong>Precio: $120.000</strong></p>
+                <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60" alt="Campamento nocturno con equipo de descanso térmico">
+                <h3>Quilt Modular Down 850 FP</h3>
+                <p>Pluma de ganso hidrófuga certificada RDS. Rango de confort hasta -5 °C sin peso muerto de cierre.</p>
+                <p><strong>Precio: $340.000</strong></p>
                 <div>
                     <button type="button">❤️ Favorito</button>
-                    <button type="button">🛒 Agregar al Carrito</button>
+                    <button type="button">🛒 Agregar</button>
                 </div>
             </article>
         </main>
@@ -104,12 +105,12 @@
     <!-- PIE DE PÁGINA -->
     <footer>
         <section>
-            <h3>Contacto y Soporte</h3>
-            <p>Email: soporte@techstore.com</p>
-            <p>Ubicación: Buenos Aires, Argentina</p>
+            <h3>Contacto y Taller</h3>
+            <p>Email: contacto@verticeultralight.ar</p>
+            <p>Base de Operaciones: San Carlos de Bariloche, Río Negro</p>
         </section>
 
-        <p>&copy; 2026 TechStore - Aplicaciones Web Cliente (ISTEA). Todos los derechos reservados.</p>
+        <p>&copy; 2026 Vértice Ultralight - Aplicaciones Web Cliente (ISTEA). Todos los derechos reservados.</p>
     </footer>
 
 </body>

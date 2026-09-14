@@ -17,3 +17,10 @@ Crear la estructura inicial de index.html para un e-commerce en HTML5 semántico
 - Tipografía accesible del sistema con interlineado legible (line-height: 1.6).
 - Layout responsivo utilizando CSS Grid (auto-fit, minmax) en el catálogo y Flexbox en cabecera y tarjetas.
 - Microinteracciones en botones y enlaces usando transform y transiciones suaves al hover y active."
+
+## Predicción 4: Pivot temático a Vértice Ultralight y blindaje de Grid
+
+**Prompt utilizado:**
+"Actualizá el contenido completo de index.html, producto.html, carrito.html y contacto.html para pivotar la tienda hacia 'Vértice Ultralight' (equipamiento técnico de montaña y senderismo rápido). En producto.html modelá la 'Mochila Frameless Ultra 40L' con tabla semántica de especificaciones (material Ultra 200TX, columna de agua de 20.000 mm, peso base de 480 g) y variantes de talle de torso y cinturón. En style.css corregí dos problemas estructurales de Clase 3:
+1. Reemplazá el selector genérico 'article' por el combinador de hijo directo 'main#catalogo > article' para aislar la vista de producto individual de los estilos y elevaciones del catálogo.
+2. Saca el riesgo de que se rompan los límites de columna y se distorsione por completo la estructura del layout. Cambia las columnas de layout y catálogo de '1fr' a 'minmax(0, 1fr)'."
