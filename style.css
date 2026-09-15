@@ -263,6 +263,24 @@ main#catalogo > article img {
     margin-bottom: 1rem;
 }
 
+.badge-tecnico {
+    position: absolute;
+    top: 1.75rem;
+    left: 1.75rem;
+    z-index: 1;
+    background: rgba(24, 24, 27, 0.88);
+    color: #ffffff;
+    border: var(--border-width) solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius);
+    padding: 0.35rem 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-sm);
+}
+
 main#catalogo > article h3 {
     font-size: 1.05rem;
     font-weight: 700;
@@ -310,6 +328,11 @@ button, input[type="submit"] {
     flex: 1;
 }
 
+button,
+.accion-secundaria {
+    min-height: 2.6rem;
+}
+
 button:hover, input[type="submit"]:hover {
     background: var(--color-primary-hover);
 }
@@ -325,8 +348,28 @@ button[type="button"]:hover {
     border-color: #d4d4d8;
 }
 
+.accion-secundaria {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: var(--radius);
+    padding: 0.65rem 1rem;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.accion-secundaria:hover {
+    background: var(--color-primary-hover);
+}
+
 button:focus-visible,
-input[type="submit"]:focus-visible {
+input[type="submit"]:focus-visible,
+.accion-secundaria:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }

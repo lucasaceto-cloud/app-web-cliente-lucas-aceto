@@ -30,4 +30,10 @@ Durante la implementación de selectores avanzados, se introdujo un error de sin
 **Prompt correctivo utilizado:**
 Analizá el archivo style.css, detectá el punto exacto de quiebre de sintaxis que bloquea el renderizado correcto y regenerá la hoja de estilos completa. Aprovechá para pivotar la estética desde el neo-brutalismo hacia un diseño técnico outdoor mas limpio (estilo Montagne/Columbia): paleta neutra con acento rojo técnico, sombras suaves, bordes finos de 1px, preservando estrictamente los selectores de Clase 3 (:focus-visible, :nth-child, :not(:last-child)) y el header sticky de Clase 4.
 
- 
+
+## Predicción 6: Badges técnicos con posicionamiento absoluto
+**Prompt utilizado:**
+"Implementar el Commit D de Clase 4 sin JavaScript ni librerías: agregar badges técnicos flotantes sobre las imágenes de las tarjetas del catálogo usando posicionamiento nativo CSS. Cada tarjeta debe actuar como contexto de posicionamiento con `position: relative`, y cada etiqueta técnica debe salir del flujo normal con `position: absolute`, coordenadas `top` y `left`, y un `z-index` local para quedar por encima de la imagen. Mantener el aislamiento con `main#catalogo > article`, evitar `transition: all` y corregir cualquier anidamiento inválido de controles interactivos si aparece en las acciones de tarjeta."
+
+**Predicción técnica:**
+El motor del navegador va a calcular la tarjeta dentro del flujo normal del grid, reservar espacio para imagen, textos y acciones, y luego va a pintar el badge por encima de la foto sin modificar el tamaño de la tarjeta. Al usar `position: relative` en `main#catalogo > article`, el badge tomará esa tarjeta como bloque contenedor para sus coordenadas absolutas; al usar `z-index`, quedará en una capa de pintura superior a la imagen.
