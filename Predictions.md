@@ -33,7 +33,14 @@ Analizá el archivo style.css, detectá el punto exacto de quiebre de sintaxis q
 
 ## Predicción 6: Badges técnicos con posicionamiento absoluto
 **Prompt utilizado:**
-"Implementar el Commit D de Clase 4 sin JavaScript ni librerías: agregar badges técnicos flotantes sobre las imágenes de las tarjetas del catálogo usando posicionamiento nativo CSS. Cada tarjeta debe actuar como contexto de posicionamiento con `position: relative`, y cada etiqueta técnica debe salir del flujo normal con `position: absolute`, coordenadas `top` y `left`, y un `z-index` local para quedar por encima de la imagen. Mantener el aislamiento con `main#catalogo > article`, evitar `transition: all` y corregir cualquier anidamiento inválido de controles interactivos si aparece en las acciones de tarjeta."
+Implementar el Commit D de Clase 4 sin JavaScript ni librerías: agregar badges técnicos flotantes sobre las imágenes de las tarjetas del catálogo usando posicionamiento nativo CSS. Cada tarjeta debe actuar como contexto de posicionamiento con `position: relative`, y cada etiqueta técnica debe salir del flujo normal con `position: absolute`, coordenadas `top` y `left`, y un `z-index` local para quedar por encima de la imagen. Mantener el aislamiento con `main#catalogo > article`, evitar `transition: all` y corregir cualquier anidamiento inválido de controles interactivos si aparece en las acciones de tarjeta.
 
 **Predicción técnica:**
 El motor del navegador va a calcular la tarjeta dentro del flujo normal del grid, reservar espacio para imagen, textos y acciones, y luego va a pintar el badge por encima de la foto sin modificar el tamaño de la tarjeta. Al usar `position: relative` en `main#catalogo > article`, el badge tomará esa tarjeta como bloque contenedor para sus coordenadas absolutas; al usar `z-index`, quedará en una capa de pintura superior a la imagen.
+
+## Predicción 7: Semántica consistente en tarjetas de producto
+**Prompt utilizado:**
+Auditar las tarjetas del catálogo y corregir su estructura HTML para que todas compartan el mismo patrón semántico: los elementos que navegan hacia la ficha de producto deben ser enlaces `<a>`, mientras que las acciones internas como favorito deben mantenerse como botones `<button>`. Evitar anidar controles interactivos y verificar que el selector CSS de imágenes conserve el layout aunque la imagen quede envuelta por un enlace.
+
+**Predicción técnica:**
+El navegador expondrá la imagen y el título de cada producto como enlaces navegables hacia la ficha, mientras que el botón de favorito seguirá siendo un control de acción. Como el selector `main#catalogo > article img` apunta a imágenes descendientes dentro de la tarjeta, las imágenes conservarán `aspect-ratio`, `object-fit` y margen aunque ya no sean hijas inmediatas de `<article>`.
