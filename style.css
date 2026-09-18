@@ -482,3 +482,71 @@ footer p:last-child {
     font-size: 0.8rem;
     color: #71717a;
 }
+
+/* Compensación de navegación para header sticky */
+main#catalogo,
+#filosofia {
+    scroll-margin-top: 6rem;
+}
+
+/* ==========================================================================
+   10. SECCIÓN INSTITUCIONAL / FILOSOFÍA TÉCNICA
+   ========================================================================== */
+.seccion-filosofia {
+    max-width: 1400px;
+    margin: 3.5rem auto 0 auto;
+    background: var(--bg-surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.seccion-filosofia > h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.seccion-filosofia > p {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    max-width: 80ch;
+    margin-bottom: 1.5rem;
+}
+
+.pilares-filosofia {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .pilares-filosofia {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.pilares-filosofia article {
+    background: var(--bg-canvas);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.pilares-filosofia h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.pilares-filosofia p {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+}
