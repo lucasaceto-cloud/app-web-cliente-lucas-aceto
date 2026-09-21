@@ -33,14 +33,21 @@ Analizá el archivo style.css, detectá el punto exacto de quiebre de sintaxis q
 
 ## Predicción 6: Badges técnicos con posicionamiento absoluto
 **Prompt utilizado:**
-Implementar el Commit D de Clase 4 sin JavaScript ni librerías: agregar badges técnicos flotantes sobre las imágenes de las tarjetas del catálogo usando posicionamiento nativo CSS. Cada tarjeta debe actuar como contexto de posicionamiento con `position: relative`, y cada etiqueta técnica debe salir del flujo normal con `position: absolute`, coordenadas `top` y `left`, y un `z-index` local para quedar por encima de la imagen. Mantener el aislamiento con `main#catalogo > article`, evitar `transition: all` y corregir cualquier anidamiento inválido de controles interactivos si aparece en las acciones de tarjeta.
+Agrega etiquetas técnicas flotantes sobre las imágenes de las tarjetas del catálogo usando posicionamiento nativo CSS. Cada tarjeta debe actuar como contexto de posicionamiento con `position: relative`, y cada etiqueta técnica debe salir del flujo normal con `position: absolute`, coordenadas `top` y `left`, y un `z-index` local para quedar por encima de la imagen. Mantener el aislamiento con `main#catalogo > article`, evitar `transition: all` y corregir cualquier anidamiento inválido de controles interactivos si aparece en las acciones de tarjeta.
 
 **Predicción técnica:**
 El motor del navegador va a calcular la tarjeta dentro del flujo normal del grid, reservar espacio para imagen, textos y acciones, y luego va a pintar el badge por encima de la foto sin modificar el tamaño de la tarjeta. Al usar `position: relative` en `main#catalogo > article`, el badge tomará esa tarjeta como bloque contenedor para sus coordenadas absolutas; al usar `z-index`, quedará en una capa de pintura superior a la imagen.
 
-## Predicción 7: Semántica consistente en tarjetas de producto
+## Predicción 7 (ajustada): Semántica consistente en tarjetas de producto
 **Prompt utilizado:**
-Auditar las tarjetas del catálogo y corregir su estructura HTML para que todas compartan el mismo patrón semántico: los elementos que navegan hacia la ficha de producto deben ser enlaces `<a>`, mientras que las acciones internas como favorito deben mantenerse como botones `<button>`. Evitar anidar controles interactivos y verificar que el selector CSS de imágenes conserve el layout aunque la imagen quede envuelta por un enlace.
+Audita las tarjetas del catálogo y corregi su estructura HTML para que todas compartan el mismo patrón semántico: los elementos que navegan hacia la ficha de producto deben ser enlaces `<a>`, mientras que las acciones internas como favorito deben mantenerse como botones `<button>`. Evita anidar controles interactivos y ajustar el selector CSS de imágenes para conservar el layout aunque la imagen quede envuelta por un enlace.
 
 **Predicción técnica:**
-El navegador expondrá la imagen y el título de cada producto como enlaces navegables hacia la ficha, mientras que el botón de favorito seguirá siendo un control de acción. Como el selector `main#catalogo > article img` apunta a imágenes descendientes dentro de la tarjeta, las imágenes conservarán `aspect-ratio`, `object-fit` y margen aunque ya no sean hijas inmediatas de `<article>`.
+El navegador mostrará la imagen y el título de cada producto como enlaces navegables hacia la ficha, mientras que el botón de favorito sigue siendo un control de acción. Al cambiar el selector de imagen de hijo directo a descendiente dentro de la tarjeta, las imágenes conservarán `aspect-ratio`, `object-fit` y margen aunque ya no sean hijas inmediatas de `<article>`.
+
+## Predicción 8: Saneamiento W3C en tablas y resolución de ancla institucional
+**Prompt utilizado:**
+Limpia los atributos visuales viejos y obsoletos como border="1" en producto.html y carrito.html, dejando que todo el diseño corra por cuenta de style.css. En index.html, arregla el anclaje roto de #filosofia sumando una sección institucional semántica (<section id="filosofia">) con tres pilares adentro usando <article>. En style.css, darle estilo a la sección teniendo en cuenta que no se pise ni interfiera con el catálogo gracias al selector estricto main#catalogo > article, y meterle scroll-margin-top para que, cuando salte por el ancla, la página no quede tapada por el header sticky.
+
+**Predicción técnica:**
+Sacar el border="1" no va a romper nada visualmente porque las reglas generales para tablas en style.css ya se encargan de los bordes sutiles y del border-collapse. Sumar el <section id="filosofia"> va a solucionar el salto de navegación sin afectar al catálogo, ya que estos nuevos <article> no entran en el selector de hijo directo main#catalogo > article. Por último, el scroll-margin-top va a garantizar que la vista aterrice bien ubicada, abajo del header sticky y sin cortarse.
