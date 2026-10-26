@@ -9,12 +9,12 @@
     --border-color: #e4e4e7;
     --border-width: 1px;
 
-    /* Rojo técnico outdoor (inspirado en Montagne) */
+    /* Rojo técnico outdoor (para anillos de enfoque accesibles y fondos sutiles) */
     --color-primary: #dc2626;
     --color-primary-hover: #b91c1c;
     --color-primary-light: #fef2f2;
 
-    /* Elevaciones suaves y limpias */
+    /* Elevaciones suaves y limpias (Sombras con dispersión progresiva) */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.12);
@@ -24,7 +24,7 @@
 }
 
 /* ==========================================================================
-   2. RESETEO UNIVERSAL Y TIPOGRAFÍA BASE (CLASE 3)
+   2. RESETEO UNIVERSAL Y TIPOGRAFÍA BASE
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -126,7 +126,7 @@ nav a:focus-visible {
 }
 
 /* ==========================================================================
-   4. ESTRUCTURA PRINCIPAL (CLASE 3: MOBILE-FIRST & MINMAX)
+   4. ESTRUCTURA PRINCIPAL (MOBILE-FIRST & MINMAX)
    ========================================================================== */
 .layout-principal {
     display: grid;
