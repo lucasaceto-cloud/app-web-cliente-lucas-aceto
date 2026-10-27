@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vértice Ultralight | Equipamiento Técnico de Montaña</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/datos.js"></script>
+    <script defer src="js/mochila.js"></script>
 </head>
 <body>
 
@@ -25,7 +27,7 @@
                 <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#filosofia">Filosofía</a></li>
                 <li><a href="#">Favoritos (0)</a></li>
-                <li><a href="carrito.html">Carrito (0)</a></li>
+                <li><a href="carrito.html">Carrito (<span id="contador-mochila" aria-live="polite">0</span>)</a></li>
             </ul>
         </nav>
     </header>
@@ -33,7 +35,7 @@
     <!-- CONTENEDOR PRINCIPAL: FILTROS Y CATÁLOGO -->
     <div class="layout-principal">
         <!-- FILTROS Y CATEGORÍAS (Barra lateral semántica) -->
-        <aside aria-label="Filtros del catálogo">
+        <aside aria-label="Filtros y mochila">
             <h2>Filtros Técnicos</h2>
 
             <section>
@@ -58,6 +60,15 @@
                     <button type="button">Aplicar Filtro</button>
                 </form>
             </section>
+
+            <section id="mochila" aria-labelledby="mochila-titulo">
+                <h3 id="mochila-titulo">Mi mochila</h3>
+                <ul id="mochila-lista"></ul>
+                <p>Peso: <strong id="mochila-peso">0 g</strong> de <span id="mochila-limite"></span></p>
+                <meter id="mochila-medidor" min="0" value="0"></meter>
+                <p id="mochila-aviso" hidden>Superaste tu presupuesto de peso.</p>
+                <p>Total: <strong id="mochila-precio"></strong></p>
+            </section>
         </aside>
 
         <!-- CATÁLOGO CENTRAL -->
@@ -65,7 +76,7 @@
             <h2>Equipamiento Destacado</h2>
 
             <!-- TARJETA DE PRODUCTO 1 (Mochila Ultra 40L) -->
-            <article>
+            <article data-id="mochila-ultra-40">
                 <a href="producto.html" aria-label="Ver detalle de Mochila Frameless Ultra 40L">
                     <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=500&auto=format&fit=crop&q=60" alt="Mochila técnica ultralight en sendero de alta montaña">
                 </a>
@@ -77,11 +88,12 @@
                 <p><strong>Precio: $280.000</strong></p>
                 <div>
                     <button type="button">❤️ Favorito</button>
+                    <button type="button" data-accion="agregar">🛒 Agregar</button>
                 </div>
             </article>
 
             <!-- TARJETA DE PRODUCTO 2 (Carpa Monopared) -->
-            <article>
+            <article data-id="carpa-monopared-2p">
                 <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=500&auto=format&fit=crop&q=60" alt="Carpa ultraligera montada con bastones de trekking">
                 <span class="badge-tecnico">620 g</span>
                 <h3>Carpa Monopared Dyneema 2P</h3>
@@ -89,12 +101,12 @@
                 <p><strong>Precio: $420.000</strong></p>
                 <div>
                     <button type="button">❤️ Favorito</button>
-                    <button type="button">🛒 Agregar</button>
+                    <button type="button" data-accion="agregar">🛒 Agregar</button>
                 </div>
             </article>
 
             <!-- TARJETA DE PRODUCTO 3 (Quilt Modular) -->
-            <article>
+            <article data-id="quilt-modular-850">
                 <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60" alt="Campamento nocturno con equipo de descanso térmico">
                 <span class="badge-tecnico">850 FP</span>
                 <h3>Quilt Modular Down 850 FP</h3>
@@ -102,7 +114,7 @@
                 <p><strong>Precio: $340.000</strong></p>
                 <div>
                     <button type="button">❤️ Favorito</button>
-                    <button type="button">🛒 Agregar</button>
+                    <button type="button" data-accion="agregar">🛒 Agregar</button>
                 </div>
             </article>
         </main>
