@@ -1,0 +1,9 @@
+# Sistema / editor
+.DS_Store
+Thumbs.db
+*.lnk
+.vscode/
+.idea/
+
+# Dependencias
+node_modules/
