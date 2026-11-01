@@ -21,6 +21,15 @@
 
     --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --radius: 4px;
+
+    /* Escala de espaciado y anchos del sitio */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 2rem;
+    --ancho-max: 1400px;
+    --ancho-form: 720px;
 }
 
 /* ==========================================================================
@@ -133,7 +142,7 @@ nav a:focus-visible {
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
-    max-width: 1400px;
+    max-width: var(--ancho-max);
     margin: 0 auto;
 }
 
@@ -480,7 +489,7 @@ footer section p {
 footer p:last-child {
     margin-top: 1.5rem;
     font-size: 0.8rem;
-    color: #71717a;
+    color: #a1a1aa;
 }
 
 /* Compensación de navegación para header sticky */
@@ -493,7 +502,7 @@ main#catalogo,
    10. SECCIÓN INSTITUCIONAL / FILOSOFÍA TÉCNICA
    ========================================================================== */
 .seccion-filosofia {
-    max-width: 1400px;
+    max-width: var(--ancho-max);
     margin: 3.5rem auto 0 auto;
     background: var(--bg-surface);
     border: var(--border-width) solid var(--border-color);
@@ -558,3 +567,67 @@ main#catalogo,
 #mochila li { display: flex; justify-content: space-between; align-items: center; gap: .5rem; font-size: .9rem; }
 #mochila meter { width: 100%; height: .75rem; }
 #mochila-aviso { color: var(--color-primary); font-weight: 600; }
+
+/* ==========================================================================
+   11. FUNDAMENTOS DE LAYOUT (CONTENEDOR, RITMO, RESPONSIVE)
+   ========================================================================== */
+body > main,
+body > footer {
+    max-width: var(--ancho-max);
+    margin-inline: auto;
+}
+
+.contenido-angosto {
+    max-width: var(--ancho-form);
+}
+
+/* Ritmo vertical: separa cada elemento solo del anterior */
+body > main > * + * { margin-top: var(--space-4); }
+body > main article > * + * { margin-top: var(--space-3); }
+
+/* Navegación: página actual */
+nav a[aria-current="page"] {
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+/* Tablas con scroll propio (evita scroll horizontal de toda la página) */
+.tabla-scroll { overflow-x: auto; }
+.tabla-scroll > table { margin: 0; }
+.tabla-scroll:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Radios y checkbox */
+fieldset > div + div { margin-top: var(--space-2); }
+input[type="radio"], input[type="checkbox"] {
+    accent-color: var(--color-primary);
+    margin-right: var(--space-2);
+}
+
+/* Mobile: header y orden del contenido */
+@media (max-width: 767px) {
+    header { padding: var(--space-3); gap: var(--space-3); }
+    header form[role="search"] { order: 3; flex: 1 1 100%; max-width: none; }
+    header form[role="search"] label {
+        position: absolute; width: 1px; height: 1px;
+        overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+    }
+    nav ul { flex-wrap: wrap; gap: var(--space-1); }
+    nav a { padding: 0.5rem 0.6rem; }
+}
+
+@media (max-width: 1023px) {
+    .layout-principal > aside { order: 1; } /* el catálogo (order 0) aparece primero */
+}
+
+/* Desktop: filtros y mochila siempre a la vista */
+@media (min-width: 1024px) {
+    .layout-principal > aside {
+        position: sticky;
+        top: 6rem; /* igual que scroll-margin-top: altura del header + aire */
+        max-height: calc(100vh - 7rem);
+        overflow-y: auto;
+    }
+}
