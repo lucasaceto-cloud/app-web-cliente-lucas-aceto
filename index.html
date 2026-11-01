@@ -6,6 +6,8 @@
     <title>Vértice Ultralight | Equipamiento Técnico de Montaña</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="js/datos.js"></script>
+    <script defer src="js/utilidades.js"></script>
+    <script defer src="js/catalogo.js"></script>
     <script defer src="js/mochila.js"></script>
 </head>
 <body>
@@ -74,49 +76,7 @@
         <!-- CATÁLOGO CENTRAL -->
         <main id="catalogo">
             <h2>Equipamiento Destacado</h2>
-
-            <!-- TARJETA DE PRODUCTO 1 (Mochila Ultra 40L) -->
-            <article data-id="mochila-ultra-40">
-                <a href="producto.html" aria-label="Ver detalle de Mochila Frameless Ultra 40L">
-                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=500&auto=format&fit=crop&q=60" alt="Mochila técnica ultralight en sendero de alta montaña">
-                </a>
-                <span class="badge-tecnico">Ultra 200TX</span>
-                <h3>
-                    <a href="producto.html">Mochila Frameless Ultra 40L</a>
-                </h3>
-                <p>Construida en Ultra 200TX impermeable. Peso neto de 480 gramos para fastpacking y travesías.</p>
-                <p><strong>Precio: $280.000</strong></p>
-                <div>
-                    <button type="button">❤️ Favorito</button>
-                    <button type="button" data-accion="agregar">🛒 Agregar</button>
-                </div>
-            </article>
-
-            <!-- TARJETA DE PRODUCTO 2 (Carpa Monopared) -->
-            <article data-id="carpa-monopared-2p">
-                <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=500&auto=format&fit=crop&q=60" alt="Carpa ultraligera montada con bastones de trekking">
-                <span class="badge-tecnico">620 g</span>
-                <h3>Carpa Monopared Dyneema 2P</h3>
-                <p>Armado estructural con bastones de trekking. Columna de agua de 15.000 mm y 620 g de peso total.</p>
-                <p><strong>Precio: $420.000</strong></p>
-                <div>
-                    <button type="button">❤️ Favorito</button>
-                    <button type="button" data-accion="agregar">🛒 Agregar</button>
-                </div>
-            </article>
-
-            <!-- TARJETA DE PRODUCTO 3 (Quilt Modular) -->
-            <article data-id="quilt-modular-850">
-                <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60" alt="Campamento nocturno con equipo de descanso térmico">
-                <span class="badge-tecnico">850 FP</span>
-                <h3>Quilt Modular Down 850 FP</h3>
-                <p>Pluma de ganso hidrófuga certificada RDS. Rango de confort hasta -5 °C sin peso muerto de cierre.</p>
-                <p><strong>Precio: $340.000</strong></p>
-                <div>
-                    <button type="button">❤️ Favorito</button>
-                    <button type="button" data-accion="agregar">🛒 Agregar</button>
-                </div>
-            </article>
+            <noscript><p>Activá JavaScript para ver el catálogo.</p></noscript>
         </main>
     </div>
 
@@ -151,6 +111,22 @@
 
         <p>&copy; 2026 Vértice Ultralight - Aplicaciones Web Cliente (ISTEA). Todos los derechos reservados.</p>
     </footer>
+
+    <!-- PLANTILLA DE TARJETA: el navegador la parsea pero no la renderiza; js/catalogo.js la clona por producto -->
+    <template id="tpl-tarjeta">
+        <article>
+            <a data-campo="enlace-imagen"><img data-campo="imagen" alt="" loading="lazy" decoding="async"></a>
+            <span class="badge-tecnico" data-campo="badge"></span>
+            <h3><a data-campo="enlace-titulo"></a></h3>
+            <p data-campo="descripcion"></p>
+            <p>Peso: <span data-campo="peso"></span></p>
+            <p><strong>Precio: <span data-campo="precio"></span></strong></p>
+            <div>
+                <button type="button">❤️ Favorito</button>
+                <button type="button" data-accion="agregar">🛒 Agregar</button>
+            </div>
+        </article>
+    </template>
 
 </body>
 </html>

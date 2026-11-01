@@ -2,7 +2,6 @@
 let mochila = []; // [{ id, cantidad }]
 
 // Referencias al DOM (se buscan una sola vez)
-const catalogo     = document.querySelector('main#catalogo');
 const listaMochila = document.querySelector('#mochila-lista');
 const contador     = document.querySelector('#contador-mochila');
 const elPeso       = document.querySelector('#mochila-peso');
@@ -10,10 +9,7 @@ const elPrecio     = document.querySelector('#mochila-precio');
 const medidor      = document.querySelector('#mochila-medidor');
 const aviso        = document.querySelector('#mochila-aviso');
 
-const formatoARS = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 });
-
 // --- Lógica (funciones sobre el estado) ---
-const buscarProducto = (id) => PRODUCTOS.find((p) => p.id === id);
 
 function agregar(id) {
     const item = mochila.find((i) => i.id === id);
