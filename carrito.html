@@ -12,9 +12,10 @@
         <h1><a href="index.html">Vértice Ultralight</a></h1>
         <nav aria-label="Navegación principal">
             <ul>
-                <li><a href="index.html">Catálogo</a></li>
-                <li><a href="carrito.html">Carrito (1)</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="index.html#filosofia">Filosofía</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html" aria-current="page">Carrito (<span id="contador-mochila" aria-live="polite">0</span>)</a></li>
             </ul>
         </nav>
     </header>
@@ -23,7 +24,8 @@
         <h2>Resumen del Carrito</h2>
 
         <!-- Tabla detallada del ítem en carrito -->
-        <table>
+        <div class="tabla-scroll" role="region" tabindex="0" aria-label="Detalle del carrito">
+            <table>
             <thead>
                 <tr>
                     <th>Equipo</th>
@@ -49,6 +51,7 @@
                 </tr>
             </tfoot>
         </table>
+            </div>
 
         <!-- Formulario de despacho y facturación -->
         <section>
