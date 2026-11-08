@@ -1,9 +1,8 @@
 // ESTADO: la única verdad. El DOM es solo un dibujo de esto.
-let mochila = []; // [{ id, cantidad }]
+let mochila = cargarMochila(); // [{ id, cantidad }]
 
 // Referencias al DOM (se buscan una sola vez)
 const listaMochila = document.querySelector('#mochila-lista');
-const contador     = document.querySelector('#contador-mochila');
 const elPeso       = document.querySelector('#mochila-peso');
 const elPrecio     = document.querySelector('#mochila-precio');
 const medidor      = document.querySelector('#mochila-medidor');
@@ -42,7 +41,7 @@ function render() {
             </li>`;
         }).join('');
 
-    contador.textContent = cantidadTotal();
+    mostrarContador(cantidadTotal());
     elPeso.textContent   = `${peso} g`;
     elPrecio.textContent = formatoARS.format(precioTotal());
     medidor.max   = LIMITE_PESO_G;
@@ -57,6 +56,7 @@ catalogo.addEventListener('click', (e) => {
     const tarjeta = boton.closest('article[data-id]');
     if (!tarjeta) return;
     agregar(tarjeta.dataset.id);
+    guardarMochila(mochila);
     render();
 });
 
@@ -65,8 +65,16 @@ listaMochila.addEventListener('click', (e) => {
     const boton = e.target.closest('button[data-accion="quitar"]');
     if (!boton) return;
     quitar(boton.dataset.id);
+    guardarMochila(mochila);
     render();
 });
 
 document.querySelector('#mochila-limite').textContent = `${LIMITE_PESO_G} g`;
 render(); // primer dibujo (estado vacío)
+
+// Mantiene sincronizadas las pestañas: 'storage' solo se dispara en las otras
+window.addEventListener('storage', (e) => {
+    if (e.key !== CLAVE_MOCHILA) return;
+    mochila = cargarMochila();
+    render();
+});
