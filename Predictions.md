@@ -70,3 +70,11 @@ El parser de HTML procesa el <template> pero su contenido queda en un DocumentFr
 
 **Justificación del refactor:**
 El dato de cada producto estaba duplicado entre HTML y array (carrito.html mostraba $305.000 para una mochila que el catálogo vende a $280.000), agregar un producto costaba ~13 líneas de HTML y filtrar u ordenar requería manipular nodos. Con una fuente única de datos, el HTML describe la estructura una sola vez y JS la repite por cada elemento. El costo asumido es que sin JavaScript el catálogo no se muestra, mitigado con <noscript>.
+
+
+## Predicción 11: Fundamentos de layout responsive y consistencia entre páginas
+**Prompt utilizado:**
+Auditá y corregí el layout de las 4 páginas sin librerías: definí una escala de espaciado y un ancho máximo como variables CSS, aplicá un ritmo vertical con el combinador de hermano adyacente, unificá la navegación (con aria-current y contador de carrito), hacé el header responsive sin scroll horizontal a 375 px, mostrá el catálogo antes que los filtros en mobile con order y dejá el aside sticky en desktop, envolvé las tablas en un contenedor con overflow-x y foco accesible, separá radios y checkbox y mejorá el contraste del footer a AA.
+
+**Predicción técnica:**
+Las variables en :root se resuelven en tiempo de cálculo de estilos, así que cambiar una escala se propaga a todas las reglas. El selector `* + *` coincide solo con elementos precedidos por un hermano, por eso agrega separación sin margen sobrante en el primer elemento. En mobile, flex-wrap permite que los ítems de la nav pasen a otra línea en vez de desbordar y `order` reordena visualmente los ítems del grid sin tocar el DOM (el foco de teclado sigue el orden del DOM). `position: sticky` funciona porque el grid padre tiene align-items: start; sin eso el aside se estiraría a la altura de la fila y no habría recorrido para pegarse. Con overflow-x: auto el scroll queda dentro del contenedor y el layout de la página no se ensancha. El contraste se mide con la fórmula de luminancia relativa de WCAG: #a1a1aa sobre #18181b supera 4,5:1.

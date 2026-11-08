@@ -12,9 +12,10 @@
         <h1><a href="index.html">Vértice Ultralight</a></h1>
         <nav aria-label="Navegación principal">
             <ul>
-                <li><a href="index.html">Inicio / Catálogo</a></li>
-                <li><a href="carrito.html">Carrito (1)</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="index.html#filosofia">Filosofía</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito (<span id="contador-mochila" aria-live="polite">0</span>)</a></li>
             </ul>
         </nav>
     </header>
@@ -70,7 +71,8 @@
             <!-- Ficha técnica estructurada semánticamente -->
             <section>
                 <h3>Especificaciones Técnicas</h3>
-                <table>
+                <div class="tabla-scroll" role="region" tabindex="0" aria-label="Especificaciones técnicas">
+            <table>
                     <thead>
                         <tr>
                             <th>Parámetro Técnico</th>
@@ -100,6 +102,7 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
             </section>
         </article>
     </main>
