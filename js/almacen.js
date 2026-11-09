@@ -6,9 +6,11 @@ function cargarMochila() {
         if (crudo === null) return [];
         const datos = JSON.parse(crudo);
         if (!Array.isArray(datos)) return [];
-        // Nunca se confía en lo guardado: se descartan ítems inválidos o de productos inexistentes
+        // Nunca se confía en lo guardado: se descarta lo que no tenga la forma { id: string, cantidad: entero > 0 }.
+        // Si el id existe en el catálogo no se valida acá: el catálogo llega por red (asíncrono)
+        // y no debe borrarse la mochila porque la red falle. Eso lo resuelve mochila.js al dibujar.
         return datos.filter((i) => i && typeof i.id === 'string'
-            && Number.isInteger(i.cantidad) && i.cantidad > 0 && buscarProducto(i.id));
+            && Number.isInteger(i.cantidad) && i.cantidad > 0);
     } catch (error) {
         return []; // JSON corrupto o almacenamiento bloqueado
     }
