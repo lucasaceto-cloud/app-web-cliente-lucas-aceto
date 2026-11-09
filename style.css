@@ -222,6 +222,11 @@ main#catalogo > h2 {
     padding-bottom: 0.5rem;
 }
 
+/* Mensajes de carga/error/vacío: ocupan todas las columnas del grid, como el título */
+main#catalogo > #estado-catalogo {
+    grid-column: 1 / -1;
+}
+
 /* Línea roja decorativa tipo Montagne bajo el título */
 main#catalogo > h2::after {
     content: "";
