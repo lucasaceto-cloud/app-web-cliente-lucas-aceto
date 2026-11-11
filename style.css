@@ -676,3 +676,28 @@ input[type="radio"], input[type="checkbox"] {
         overflow-y: auto;
     }
 }
+
+/* ==========================================================================
+   12. DETALLE DE PRODUCTO (producto.html, render desde Supabase)
+   ========================================================================== */
+#ficha img {
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #f4f4f5;
+}
+
+/* Cantidad + acciones en una fila que se acomoda sola en mobile */
+.agregar-producto {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.agregar-producto input[type="number"] { width: 5rem; flex: 0 0 auto; }
+.agregar-producto button { flex: 1 1 12rem; }
+
+#confirmacion-agregado:empty { display: none; } /* sin mensaje no ocupa lugar */
+#confirmacion-agregado { color: var(--color-muted); font-size: 0.9rem; }
