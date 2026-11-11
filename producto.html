@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vértice Ultralight | Mochila Frameless Ultra 40L</title>
+    <!-- Título provisorio: js/producto.js lo reemplaza por el nombre real del producto -->
+    <title>Vértice Ultralight | Detalle de producto</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/config.js"></script>
     <script defer src="js/utilidades.js"></script>
+    <script defer src="js/api.js"></script>
     <script defer src="js/almacen.js"></script>
     <script defer src="js/contador.js"></script>
+    <script defer src="js/filtros.js"></script>
+    <script defer src="js/producto.js"></script>
 </head>
 <body>
 
@@ -23,91 +28,51 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Miga de pan accesible (Breadcrumbs) -->
+    <main id="producto">
+        <!-- Miga de pan: la categoría y el nombre los completa js/producto.js -->
         <nav aria-label="Miga de pan">
             <p>
-                <a href="index.html">Inicio</a> &gt; 
-                <a href="index.html#mochilas">Mochilas</a> &gt; 
-                <span>Mochila Frameless Ultra 40L</span>
+                <a href="index.html">Inicio</a> &gt;
+                <a id="miga-categoria" href="index.html#catalogo">Catálogo</a> &gt;
+                <span id="miga-producto" aria-current="page">Cargando…</span>
             </p>
         </nav>
 
-        <article>
-            <h2>Mochila Frameless Ultra 40L (Ultra 200TX)</h2>
-            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=700&auto=format&fit=crop&q=80" alt="Detalle de mochila técnica ultraliviana para senderismo">
+        <!-- Estados: cargando / error de red / producto inexistente -->
+        <p id="estado-producto" role="status"></p>
 
-            <p>Mochila sin estructura rígida diseñada para senderismo de larga distancia (*thru-hiking*). El chasis de polietileno de peso molecular ultra alto (UHMWPE) ofrece una relación resistencia-peso inigualable.</p>
-            <p><strong>Precio base: $280.000</strong></p>
+        <!-- Ficha: oculta hasta que el producto llega desde Supabase -->
+        <article id="ficha" hidden>
+            <h2 data-campo="nombre"></h2>
+            <img data-campo="imagen" alt="" decoding="async">
+            <p data-campo="descripcion"></p>
+            <p><strong>Precio: <span data-campo="precio"></span></strong></p>
 
-            <!-- Selector de variantes con fieldset y legend -->
-            <form action="carrito.html" method="get">
-                <fieldset>
-                    <legend>Configuración del equipo</legend>
-
-                    <div>
-                        <label for="talle-torso">Talle de Torso:</label>
-                        <select id="talle-torso" name="torso" required>
-                            <option value="sm">Talle S/M (43 cm a 48 cm)</option>
-                            <option value="ml">Talle M/L (48 cm a 54 cm)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="cinturon-lumbar">Cinturón Lumbar:</label>
-                        <select id="cinturon-lumbar" name="cinturon" required>
-                            <option value="estandar">Sin bolsillos integrados (Base)</option>
-                            <option value="bolsillos">Con bolsillos de acceso rápido (+$25.000)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="cantidad">Cantidad:</label>
-                        <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="3">
-                    </div>
-                </fieldset>
-
-                <button type="submit">🛒 Agregar al Carrito</button>
+            <div class="agregar-producto">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="10">
+                <button type="button" id="boton-agregar">🛒 Agregar a mi mochila</button>
                 <button type="button">❤️ Guardar en Favoritos</button>
-            </form>
+            </div>
+            <p id="confirmacion-agregado" role="status"></p>
 
-            <!-- Ficha técnica estructurada semánticamente -->
             <section>
                 <h3>Especificaciones Técnicas</h3>
                 <div class="tabla-scroll" role="region" tabindex="0" aria-label="Especificaciones técnicas">
-            <table>
-                    <thead>
-                        <tr>
-                            <th>Parámetro Técnico</th>
-                            <th>Valor Nominal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Material Principal</td>
-                            <td>Ultra 200TX (Laminado UHMWPE con película PET)</td>
-                        </tr>
-                        <tr>
-                            <td>Peso Neto Base</td>
-                            <td>480 gramos (sin accesorios modulares)</td>
-                        </tr>
-                        <tr>
-                            <td>Capacidad Total</td>
-                            <td>40L internos + 8L en bolsillos externos de malla</td>
-                        </tr>
-                        <tr>
-                            <td>Columna de Agua</td>
-                            <td>20.000 mm (Costuras selladas internamente)</td>
-                        </tr>
-                        <tr>
-                            <td>Carga Máxima Recomendada</td>
-                            <td>11 kg (Confort ideal para estilo sin bastidor)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Parámetro Técnico</th>
+                                <th scope="col">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-especificaciones"></tbody>
+                    </table>
+                </div>
             </section>
         </article>
+
+        <noscript><p>Activá JavaScript para ver el detalle del producto.</p></noscript>
     </main>
 
     <footer>
