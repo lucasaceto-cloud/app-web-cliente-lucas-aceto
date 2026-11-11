@@ -203,6 +203,37 @@ aside ul a:hover {
     transform: translateX(3px);
 }
 
+/* Filtro de categorías: son botones (no navegan), reusan el look de los links de arriba */
+#filtro-categorias button {
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+#filtro-categorias button:hover {
+    color: var(--color-primary);
+    transform: translateX(3px);
+}
+
+/* Categoría activa: mismo rol visual que aria-current="page" en la nav principal */
+#filtro-categorias button[aria-pressed="true"] {
+    color: var(--color-primary);
+    font-weight: 800;
+}
+
+#error-precio {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+}
+
 /* ==========================================================================
    6. CATÁLOGO Y TARJETAS TÉCNICAS (ESTILO MONTAGNE / COLUMBIA)
    ========================================================================== */
@@ -222,9 +253,18 @@ main#catalogo > h2 {
     padding-bottom: 0.5rem;
 }
 
-/* Mensajes de carga/error/vacío: ocupan todas las columnas del grid, como el título */
-main#catalogo > #estado-catalogo {
+/* Mensajes de estado (carga/error/vacío/sin-resultados) y el contador:
+   ocupan todas las columnas del grid, como el título */
+main#catalogo > #contador-resultados,
+main#catalogo > #estado-catalogo,
+main#catalogo > #sin-resultados {
     grid-column: 1 / -1;
+}
+
+main#catalogo > #contador-resultados {
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Línea roja decorativa tipo Montagne bajo el título */

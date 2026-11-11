@@ -10,6 +10,7 @@
     <script defer src="js/api.js"></script>
     <script defer src="js/almacen.js"></script>
     <script defer src="js/contador.js"></script>
+    <script defer src="js/filtros.js"></script>
     <script defer src="js/catalogo.js"></script>
     <script defer src="js/mochila.js"></script>
 </head>
@@ -45,25 +46,41 @@
 
             <section>
                 <h3>Categorías</h3>
-                <ul>
-                    <li><a href="#">Mochilas Frameless</a></li>
-                    <li><a href="#">Refugios y Carpas</a></li>
-                    <li><a href="#">Aislamiento y Quilts</a></li>
-                    <li><a href="#">Cocina & Filtrado</a></li>
+                <!-- Botones, no links: no navegan a ninguna URL, cambian un filtro en memoria -->
+                <ul id="filtro-categorias" role="group" aria-label="Filtrar por categoría">
+                    <li><button type="button" data-categoria="todas" aria-pressed="true">Todas</button></li>
+                    <li><button type="button" data-categoria="mochilas" aria-pressed="false">Mochilas Frameless</button></li>
+                    <li><button type="button" data-categoria="refugios" aria-pressed="false">Refugios y Carpas</button></li>
+                    <li><button type="button" data-categoria="aislamiento" aria-pressed="false">Aislamiento y Quilts</button></li>
+                    <li><button type="button" data-categoria="cocina" aria-pressed="false">Cocina &amp; Filtrado</button></li>
                 </ul>
             </section>
 
             <section>
                 <h3>Rango de Precio ($)</h3>
-                <form>
+                <form id="form-precio">
                     <label for="precio-min">Mínimo:</label>
                     <input type="number" id="precio-min" name="precio_min" min="0" placeholder="0">
 
                     <label for="precio-max">Máximo:</label>
                     <input type="number" id="precio-max" name="precio_max" min="0" placeholder="500000">
 
-                    <button type="button">Aplicar Filtro</button>
+                    <p id="error-precio" role="alert" hidden></p>
+
+                    <button type="submit">Aplicar Filtro</button>
                 </form>
+            </section>
+
+            <section>
+                <h3>Orden</h3>
+                <label for="orden-catalogo">Ordenar por:</label>
+                <select id="orden-catalogo">
+                    <option value="relevancia">Relevancia</option>
+                    <option value="precio-asc">Precio: menor a mayor</option>
+                    <option value="precio-desc">Precio: mayor a menor</option>
+                    <option value="peso-asc">Peso: menor a mayor</option>
+                    <option value="nombre-asc">Nombre (A-Z)</option>
+                </select>
             </section>
 
             <section id="mochila" aria-labelledby="mochila-titulo">
@@ -79,7 +96,12 @@
         <!-- CATÁLOGO CENTRAL -->
         <main id="catalogo">
             <h2>Equipamiento Destacado</h2>
+            <p id="contador-resultados" role="status" hidden></p>
             <p id="estado-catalogo" role="status"></p>
+            <p id="sin-resultados" hidden>
+                No encontramos productos con esos filtros.
+                <button type="button" data-accion="limpiar-filtros">Limpiar filtros</button>
+            </p>
             <noscript><p>Activá JavaScript para ver el catálogo.</p></noscript>
         </main>
     </div>
