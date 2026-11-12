@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vértice Ultralight | Resumen de Pedido</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/config.js"></script>
     <script defer src="js/utilidades.js"></script>
+    <script defer src="js/api.js"></script>
     <script defer src="js/almacen.js"></script>
     <script defer src="js/contador.js"></script>
+    <script defer src="js/carrito.js"></script>
 </head>
 <body>
 
@@ -26,79 +29,99 @@
     <main>
         <h2>Resumen del Carrito</h2>
 
-        <!-- Tabla detallada del ítem en carrito -->
-        <div class="tabla-scroll" role="region" tabindex="0" aria-label="Detalle del carrito">
-            <table>
-            <thead>
-                <tr>
-                    <th>Equipo</th>
-                    <th>Precio Unitario</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Mochila Frameless Ultra 40L (Talle M/L - Con bolsillos)</td>
-                    <td>$305.000</td>
-                    <td>1</td>
-                    <td>$305.000</td>
-                    <td><button type="button">Eliminar</button></td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="3">Total Estimado</th>
-                    <td colspan="2"><strong>$305.000</strong></td>
-                </tr>
-            </tfoot>
-        </table>
+        <!-- Estados: cargando / error de red / carrito vacío -->
+        <p id="estado-carrito" role="status"></p>
+
+        <!-- Contenido: oculto hasta que llegan los productos y hay algo en la mochila -->
+        <div id="contenido-carrito" hidden>
+            <div class="tabla-scroll" role="region" tabindex="0" aria-label="Detalle del carrito">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Equipo</th>
+                            <th scope="col">Precio Unitario</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <!-- js/carrito.js dibuja una fila por ítem de la mochila -->
+                    <tbody id="carrito-filas"></tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="row" colspan="3">Subtotal</th>
+                            <td colspan="2" id="carrito-subtotal"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" colspan="3">Peso total del pedido</th>
+                            <td colspan="2" id="carrito-peso"></td>
+                        </tr>
+                        <tr id="fila-descuento" hidden>
+                            <th scope="row" colspan="3">Descuento por transferencia (10%)</th>
+                            <td colspan="2" id="carrito-descuento"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" colspan="3">Total</th>
+                            <td colspan="2"><strong id="carrito-total"></strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
 
-        <!-- Formulario de despacho y facturación -->
-        <section>
-            <h3>Datos de Despacho y Facturación</h3>
-            <form action="#" method="post">
-                <fieldset>
-                    <legend>Información del Titular</legend>
+            <!-- Formulario de despacho: la validación nativa (required, type, pattern) corre antes del submit -->
+            <section id="seccion-despacho">
+                <h3>Datos de Despacho y Facturación</h3>
+                <form id="form-despacho">
+                    <fieldset>
+                        <legend>Información del Titular</legend>
 
-                    <div>
-                        <label for="nombre-comprador">Nombre y Apellido:</label>
-                        <input type="text" id="nombre-comprador" name="nombre_completo" required placeholder="Ej: Lucas Aceto">
-                    </div>
+                        <div>
+                            <label for="nombre-comprador">Nombre y Apellido:</label>
+                            <input type="text" id="nombre-comprador" name="nombre_completo" required autocomplete="name" placeholder="Ej: Lucas Aceto">
+                        </div>
 
-                    <div>
-                        <label for="email-facturacion">Correo Electrónico:</label>
-                        <input type="email" id="email-facturacion" name="email" required placeholder="tu-correo@ejemplo.com">
-                    </div>
+                        <div>
+                            <label for="email-facturacion">Correo Electrónico:</label>
+                            <input type="email" id="email-facturacion" name="email" required autocomplete="email" placeholder="tu-correo@ejemplo.com">
+                        </div>
 
-                    <div>
-                        <label for="direccion-envio">Dirección de Entrega:</label>
-                        <input type="text" id="direccion-envio" name="direccion" required placeholder="Calle, número, piso o localidad">
-                    </div>
+                        <div>
+                            <label for="direccion-envio">Dirección de Entrega:</label>
+                            <input type="text" id="direccion-envio" name="direccion" required autocomplete="street-address" placeholder="Calle, número, piso o localidad">
+                        </div>
 
-                    <div>
-                        <label for="codigo-postal">Código Postal:</label>
-                        <input type="text" id="codigo-postal" name="cp" pattern="[0-9]{4}" title="Debe contener 4 números" required placeholder="1414">
-                    </div>
-                </fieldset>
+                        <div>
+                            <label for="codigo-postal">Código Postal:</label>
+                            <input type="text" id="codigo-postal" name="cp" pattern="[0-9]{4}" title="Debe contener 4 números" required inputmode="numeric" autocomplete="postal-code" placeholder="1414">
+                        </div>
+                    </fieldset>
 
-                <fieldset>
-                    <legend>Medio de Pago</legend>
-                    <div>
-                        <input type="radio" id="pago-transferencia" name="metodo_pago" value="transferencia" checked>
-                        <label for="pago-transferencia">Transferencia Bancaria (10% de beneficio técnico)</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="pago-tarjeta" name="metodo_pago" value="tarjeta">
-                        <label for="pago-tarjeta">Tarjeta de Crédito / Débito</label>
-                    </div>
-                </fieldset>
+                    <fieldset>
+                        <legend>Medio de Pago</legend>
+                        <div>
+                            <input type="radio" id="pago-transferencia" name="metodo_pago" value="transferencia" checked>
+                            <label for="pago-transferencia">Transferencia Bancaria (10% de descuento)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="pago-tarjeta" name="metodo_pago" value="tarjeta">
+                            <label for="pago-tarjeta">Tarjeta de Crédito / Débito</label>
+                        </div>
+                    </fieldset>
 
-                <button type="submit">Confirmar y Despachar Pedido</button>
-            </form>
+                    <p class="aviso-demo">Sitio de demostración: no se procesa ningún pago ni se guardan tus datos.</p>
+                    <button type="submit">Confirmar y Despachar Pedido</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- Confirmación: reemplaza al contenido después del submit -->
+        <section id="confirmacion-pedido" hidden>
+            <h3 id="confirmacion-titulo" tabindex="-1">¡Pedido confirmado!</h3>
+            <p id="confirmacion-detalle"></p>
+            <p><a href="index.html#catalogo">Volver al catálogo</a></p>
         </section>
+
+        <noscript><p>Activá JavaScript para ver tu carrito.</p></noscript>
     </main>
 
     <footer>
