@@ -7,7 +7,7 @@ const NOMBRES_CATEGORIA = {
     aislamiento: 'Aislamiento y Quilts',
     cocina:      'Cocina & Filtrado',
 };
-const CANTIDAD_MAXIMA = 10;
+// CANTIDAD_MAXIMA vive en config.js: catálogo, ficha y carrito respetan el mismo tope.
 
 // producto.html?id=mochila-ultra-40 → location.search es "?id=mochila-ultra-40"
 const idProducto = new URLSearchParams(location.search).get('id'); // null si no vino ?id=
@@ -111,6 +111,12 @@ botonAgregar.addEventListener('click', () => {
     // Misma clave de localStorage que la mochila del catálogo: es UNA sola mochila en todo el sitio
     const mochila = cargarMochila();
     const item = mochila.find((i) => i.id === productoActual.id);
+    const yaTenias = item ? item.cantidad : 0;
+    // El tope es por producto en TODA la mochila, no por click: 8 + 5 superaría el máximo
+    if (yaTenias + cantidad > CANTIDAD_MAXIMA) {
+        confirmacion.textContent = `Ya tenés ${yaTenias} en tu mochila: el máximo es ${CANTIDAD_MAXIMA} por producto.`;
+        return;
+    }
     if (item) item.cantidad += cantidad;
     else mochila.push({ id: productoActual.id, cantidad });
     guardarMochila(mochila);

@@ -13,6 +13,7 @@ const aviso        = document.querySelector('#mochila-aviso');
 
 function agregar(id) {
     const item = mochila.find((i) => i.id === id);
+    if (item && item.cantidad >= CANTIDAD_MAXIMA) return; // mismo tope que la ficha y el carrito
     if (item) item.cantidad += 1;
     else mochila.push({ id, cantidad: 1 });
 }
