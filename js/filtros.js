@@ -3,7 +3,7 @@
 // no debería resetear el filtro), pero no algo que valga la pena arrastrar para
 // siempre entre visitas distintas, como sí vale la mochila.
 const CLAVE_FILTROS = 'vertice:filtros';
-const FILTROS_PREDETERMINADOS = { categoria: 'todas', precioMin: null, precioMax: null, orden: 'relevancia' };
+const FILTROS_PREDETERMINADOS = { categoria: 'todas', precioMin: null, precioMax: null, orden: 'relevancia', busqueda: '' };
 
 function cargarFiltros() {
     try {

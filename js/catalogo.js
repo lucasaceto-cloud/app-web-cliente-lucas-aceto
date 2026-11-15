@@ -8,6 +8,7 @@ const gruposCategoria = document.querySelector('#filtro-categorias');
 const formPrecio      = document.querySelector('#form-precio');
 const errorPrecio     = document.querySelector('#error-precio');
 const selectOrden     = document.querySelector('#orden-catalogo');
+const campoBusqueda   = document.querySelector('#buscar-producto'); // lo comparte js/busqueda.js
 
 // --- Estado de filtros (compartido con la URL de sessionStorage vía filtros.js) ---
 let filtros = cargarFiltros();
@@ -68,6 +69,8 @@ function aplicarFiltros(lista) {
     if (filtros.precioMin !== null) resultado = resultado.filter((p) => p.precio >= filtros.precioMin);
     if (filtros.precioMax !== null) resultado = resultado.filter((p) => p.precio <= filtros.precioMax);
 
+    if (filtros.busqueda) resultado = resultado.filter((p) => coincideBusqueda(p, filtros.busqueda));
+
     const comparador = COMPARADORES[filtros.orden];
     // sort() muta el array sobre el que se llama. resultado YA es una copia si hubo algún filter();
     // si "Todas" + sin precio, resultado todavía ES el PRODUCTOS original, así que acá sí hace falta
@@ -114,6 +117,7 @@ function sincronizarControles() {
     formPrecio.elements.precio_min.value = filtros.precioMin ?? '';
     formPrecio.elements.precio_max.value = filtros.precioMax ?? '';
     selectOrden.value = filtros.orden;
+    campoBusqueda.value = filtros.busqueda ?? '';
 }
 
 // --- Eventos de filtro: un listener por zona (delegación), no uno por botón ---
