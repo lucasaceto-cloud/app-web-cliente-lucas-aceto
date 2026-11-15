@@ -12,6 +12,7 @@
     <script defer src="js/contador.js"></script>
     <script defer src="js/filtros.js"></script>
     <script defer src="js/catalogo.js"></script>
+    <script defer src="js/busqueda.js"></script>
     <script defer src="js/mochila.js"></script>
 </head>
 <body>
@@ -21,10 +22,16 @@
         <h1>Vértice Ultralight</h1>
         
         <!-- Barra de búsqueda accesible -->
-        <form role="search">
+        <form id="form-busqueda" role="search">
             <label for="buscar-producto">Buscar equipo:</label>
-            <input type="search" id="buscar-producto" name="q" placeholder="Ej: Mochila 40L, Carpa Dyneema...">
+            <div class="campo-busqueda">
+                <input type="search" id="buscar-producto" name="q" placeholder="Ej: Mochila 40L, Carpa Dyneema..."
+                       maxlength="60" autocomplete="off" role="combobox" aria-autocomplete="list"
+                       aria-expanded="false" aria-controls="sugerencias">
+                <ul id="sugerencias" role="listbox" aria-label="Sugerencias de productos" hidden></ul>
+            </div>
             <button type="submit">Buscar</button>
+            <p id="estado-busqueda" class="solo-lectores" role="status"></p>
         </form>
 
         <!-- Navegación global -->
