@@ -8,9 +8,9 @@ const buscarProducto = (id) => PRODUCTOS.find((p) => p.id === id);
 // el rango \u0300-\u036f son esas marcas, que se borran.
 const normalizarTexto = (texto) => texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 
-// Un producto coincide si CADA palabra buscada aparece en su nombre, categoría, badge o descripción.
+// Un producto coincide si CADA palabra buscada aparece en su nombre, categoría o badge (la descripción no entra: daba resultados que no se veían en el título).
 const coincideBusqueda = (producto, texto) => {
     const palabras = normalizarTexto(texto).split(/\s+/).filter(Boolean);
-    const contenido = normalizarTexto(`${producto.nombre} ${producto.categoria} ${producto.badge ?? ''} ${producto.descripcion}`);
+    const contenido = normalizarTexto(`${producto.nombre} ${producto.categoria} ${producto.badge ?? ''}`);
     return palabras.every((palabra) => contenido.includes(palabra));
 };
