@@ -25,7 +25,7 @@
         <form id="form-busqueda" role="search">
             <label for="buscar-producto">Buscar equipo:</label>
             <div class="campo-busqueda">
-                <input type="search" id="buscar-producto" name="q" placeholder="Ej: Mochila 40L, Carpa Dyneema..."
+                <input type="search" id="buscar-producto" name="q" placeholder="Ej: mochila, carpa, manta, filtro..."
                        maxlength="60" autocomplete="off" role="combobox" aria-autocomplete="list"
                        aria-expanded="false" aria-controls="sugerencias">
                 <ul id="sugerencias" role="listbox" aria-label="Sugerencias de productos" hidden></ul>
@@ -116,7 +116,7 @@
     <!-- SECCIÓN INSTITUCIONAL / FILOSOFÍA TÉCNICA -->
     <section id="filosofia" class="seccion-filosofia">
         <h2>Filosofía de Carga: Cada Gramo Cuenta</h2>
-        <p>En el senderismo de larga distancia (*thru-hiking*) y el *fastpacking*, reducir el peso base optimiza la biomecánica y maximiza la autonomía en terrenos remotos.</p>
+        <p>En el senderismo de larga distancia (<em>thru-hiking</em>) y los viajes rápidos con poco peso (<em>fastpacking</em>), reducir el peso base optimiza la biomecánica y maximiza la autonomía en terrenos remotos.</p>
         
         <div class="pilares-filosofia">
             <article>
@@ -148,7 +148,7 @@
     <!-- PLANTILLA DE TARJETA: el navegador la parsea pero no la renderiza; js/catalogo.js la clona por producto -->
     <template id="tpl-tarjeta">
         <article>
-            <a data-campo="enlace-imagen"><img data-campo="imagen" alt="" loading="lazy" decoding="async"></a>
+            <a data-campo="enlace-imagen"><img data-campo="imagen" alt="" width="600" height="600" loading="lazy" decoding="async"></a>
             <span class="badge-tecnico" data-campo="badge"></span>
             <h3><a data-campo="enlace-titulo"></a></h3>
             <p data-campo="descripcion"></p>
