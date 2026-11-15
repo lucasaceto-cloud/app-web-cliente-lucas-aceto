@@ -311,6 +311,7 @@ main#catalogo > article:hover {
 }
 
 main#catalogo > article img {
+    height: auto; /* el atributo height="600" del HTML fija 600px y anula aspect-ratio: con auto vuelve a mandar la proporción */
     aspect-ratio: 1 / 1;
     object-fit: cover;
     background: #f4f4f5;
@@ -683,9 +684,10 @@ input[type="radio"], input[type="checkbox"] {
 #ficha img {
     width: 100%;
     max-width: 560px;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     background: #f4f4f5;
+    display: block;
 }
 
 /* Cantidad + acciones en una fila que se acomoda sola en mobile */
