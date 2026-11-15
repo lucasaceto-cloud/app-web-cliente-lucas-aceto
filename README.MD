@@ -1,80 +1,60 @@
-# Cómo usar el repositorio template
+# Vértice Ultralight
 
-Guía paso a paso para arrancar las prácticas de la materia.
+E-commerce de equipamiento ultraliviano de montaña (mochilas, refugios, aislamiento, cocina y filtros) hecho para la materia **Aplicaciones Web Cliente** (ISTEA, 2C 2026).
 
-Este repositorio es un **template**: cada alumno crea su propia copia independiente, no un fork. Tu copia no tiene ninguna relación con el repo del profesor, así que no hay riesgo de mandar cambios a otro lado por error.
+**Sitio publicado:** https://lucasaceto-cloud.github.io/app-web-cliente-lucas-aceto/
 
-## 0. Requisitos previos
+## Stack
 
-- Tener una cuenta de GitHub.
-- Tener Git instalado (`git --version` en la terminal para verificar).
-- Tener un editor de código (por ejemplo VS Code).
+100% nativo, sin librerías, frameworks ni CDNs:
 
-## 1. Crear tu propio repositorio a partir del template
+- HTML5 semántico
+- CSS3 (variables, Grid, Flexbox, `position: sticky`)
+- JavaScript Vanilla con scripts clásicos `defer` (sin módulos: `type="module"` falla con CORS en `file://`)
+- Supabase (PostgREST) como base de datos, consultada con `fetch` nativo
 
-1. Entrá al repositorio del profesor en GitHub: https://github.com/mef760/proyecto-aplicaciones-web-cliente-2c-2026
-2. Hacé clic en el botón verde **"Use this template"** → **"Create a new repository"** (arriba a la derecha, al lado de "Code").
-3. Elegí tu cuenta como dueño, poné un nombre al repo (por ejemplo `app-web-cliente-tunombre`) y marcalo como **público** (el profesor necesita poder verlo sin permisos especiales).
-4. Hacé clic en **Create repository**.
+## Qué hace
 
-Esto te crea un repositorio 100% tuyo: `github.com/TU-USUARIO/nombre-repo`. No es un fork, no tiene conexión con el original, y vos sos el único dueño.
+- **Catálogo** dibujado desde Supabase, con filtros por categoría y precio, orden y búsqueda predictiva accesible.
+- **Ficha de producto** dinámica (`producto.html?id=...`) con especificaciones técnicas.
+- **Mochila** con presupuesto de peso, guardada en `localStorage` y sincronizada entre pestañas.
+- **Carrito** dinámico: cantidades, eliminar, total, descuento por transferencia y formulario de despacho con validación nativa (la confirmación es una simulación).
 
-## 2. Clonar tu repositorio
+## Estructura
 
-```bash
-git clone https://github.com/TU-USUARIO/nombre-repo.git
-cd nombre-repo
+```
+index.html  producto.html  carrito.html  contacto.html
+style.css
+favicon.svg
+js/
+  config.js      URL y clave publishable de Supabase, constantes
+  utilidades.js  formato de moneda, búsqueda por id, normalización de texto
+  api.js         único archivo que hace fetch a Supabase (promesa productosListos)
+  almacen.js     lectura y escritura de la mochila en localStorage
+  contador.js    contador del header
+  filtros.js     estado de los filtros en sessionStorage
+  catalogo.js    render del catálogo, filtros y orden
+  busqueda.js    sugerencias del buscador (combobox)
+  mochila.js     panel "Mi mochila"
+  producto.js    ficha de producto
+  carrito.js     carrito
+supabase/seed.sql   esquema, política RLS y datos de los 12 productos
+Predictions.md      predicción técnica y prompt de cada cambio
 ```
 
-## 3. Crear una rama para tu trabajo
+## Cómo correrlo
 
-Aunque el repo es tuyo, conviene practicar el flujo de ramas + PR. Usá un nombre de rama descriptivo (por ejemplo `practica1`, `tp2-formulario`, etc.):
+1. Clonar el repositorio.
+2. Abrir la carpeta en VS Code y levantarla con la extensión **Live Server** (o abrir `index.html`).
+3. No hace falta instalar nada: el catálogo se pide a Supabase al cargar.
 
-```bash
-git checkout -b practica1
-```
+## Supabase
 
-> Nunca trabajes directo sobre `main`: siempre creá una rama antes de tocar archivos.
+- La tabla `productos` y sus datos están documentados en `supabase/seed.sql`, que es idempotente (`on conflict ... do update`).
+- El navegador usa la clave **publishable**, que es pública por diseño. Lo que protege los datos es **RLS**: hay una única política de lectura pública y ninguna de escritura, así que `INSERT`, `UPDATE` y `DELETE` desde el front son rechazados.
+- Una clave `secret` o `service_role` nunca va en este repositorio.
+- Todo texto que viene de la red se inserta con `textContent`, nunca con `innerHTML`.
 
-## 4. Hacer tus cambios
+## Flujo de trabajo
 
-Editá los archivos según la consigna. Después:
-
-```bash
-git add .
-git commit -m "Descripción breve de lo que hiciste"
-git push origin practica1
-```
-
-## 5. Abrir el Pull Request (dentro de tu propio repo)
-
-1. Andá a tu repositorio en GitHub.
-2. Vas a ver un botón que dice **"Compare & pull request"** — hacé clic ahí.
-3. Verificá que tanto la rama base como la de comparación pertenezcan a **TU** repositorio:
-   - base: `main`
-   - compare: `practica1`
-4. Completá la plantilla que aparece automáticamente (ver [`.github/pull_request_template.md`](.github/pull_request_template.md) para el detalle de qué información pide).
-5. Hacé clic en **Create pull request** y después en **Merge pull request** para integrarlo a tu `main`.
-
-Todo este proceso queda dentro de tu propio repositorio. El profesor accede a tu repo (por el link que le compartas) para revisar el código y el PR, pero nunca recibe un PR en su repositorio.
-
-## 6. Repetir el flujo para cada práctica
-
-Para cada nueva práctica o entrega, repetí los pasos 3 a 5 con una rama nueva (por ejemplo `practica2`, `practica3`, ...), partiendo siempre de `main` actualizado:
-
-```bash
-git checkout main
-git pull origin main
-git checkout -b practica2
-```
-
-## 7. Compartir el repositorio con el profesor
-
-Copiá el link de tu repositorio (`https://github.com/TU-USUARIO/nombre-repo`) y entregalo como indique el profesor (formulario, mail, etc.).
-
-## Errores comunes
-
-- **Buscar el botón "Fork" en vez de "Use this template"**: son cosas distintas. Fork crea una copia conectada al original; template crea una copia independiente. Usá siempre "Use this template".
-- **Trabajar directo sobre `main`**: creá una rama antes de tocar archivos, para practicar el flujo de PR.
-- **Dejar el repositorio como privado**: si el repo no es público, el profesor puede no tener acceso para revisarlo. Verificá los ajustes en Settings → General → Danger Zone si necesitás cambiar la visibilidad.
-- **No hacer push de la rama antes de abrir el PR**: si `git push origin practica1` falla, revisá que la rama exista localmente (`git branch`) y que el remoto esté bien configurado (`git remote -v`).
+Una rama por tarea, commits atómicos con mensajes semánticos (`feat`, `fix`, `style`, `perf`, `docs`, `chore`) y Pull Requests con la plantilla de `.github/pull_request_template.md`. Cada cambio de código registra su prompt y su predicción técnica en `Predictions.md`.
